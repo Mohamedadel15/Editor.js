@@ -1,0 +1,53 @@
+.editorjs-content {
+    width: 100%;
+    min-height: 500px;
+    border-radius: 7px;
+    background: #fff;
+    padding: 20px;
+    font-size: 1.2em;
+    color: #333;
+    line-height: 1.6;
+}
+
+.editorjs-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.editorjs-content table, .editorjs-content th, .editorjs-content td {
+    border: 1px solid #ddd;
+}
+
+.editorjs-content th, .editorjs-content td {
+    padding: 8px;
+    text-align: left;
+}
+
+.editorjs-content th {
+    background-color: #f2f2f2;
+}
+
+.editorjs-content ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
+.editorjs-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.editorjs-content li {
+    margin-bottom: 10px;
+}
+
+/* Add styles for raw HTML content */
+.raw-html {
+    background-color: black;
+    color: green;
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 400px;
+    overflow: auto;
+}
