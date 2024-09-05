@@ -41,13 +41,3 @@
 .editorjs-content li {
     margin-bottom: 10px;
 }
-
-/* Add styles for raw HTML content */
-.raw-html {
-    background-color: black;
-    color: green;
-    padding: 10px;
-    border-radius: 5px;
-    max-height: 400px;
-    overflow: auto;
-}
