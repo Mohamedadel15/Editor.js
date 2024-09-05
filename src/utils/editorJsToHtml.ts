@@ -1,11 +1,20 @@
 import EditorJsToHtml from 'editorjs-html';
 
 export const tableRenderer = (block: any) => {
-    const {content} = block.data;
-    const rows = content.map((row: any) => {
+    const {content, withHeadings} = block.data;
+    let rows = '';
+
+    if (withHeadings && content.length > 0) {
+        const headerCells = content[0].map((cell: any) => `<th>${cell}</th>`).join('');
+        rows += `<tr>${headerCells}</tr>`;
+        content.shift(); // Remove the first row as it is now used as headers
+    }
+
+    rows += content.map((row: any) => {
         const cells = row.map((cell: any) => `<td>${cell}</td>`).join('');
         return `<tr>${cells}</tr>`;
     }).join('');
+
     return `<table>${rows}</table>`;
 };
 
