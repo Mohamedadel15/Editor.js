@@ -1,7 +1,7 @@
 import EditorJsToHtml from 'editorjs-html';
 
 export const tableRenderer = (block: any) => {
-    const {content, withHeadings} = block.data;
+    const { content, withHeadings } = block.data;
     let rows = '';
 
     if (withHeadings && content.length > 0) {
@@ -19,7 +19,7 @@ export const tableRenderer = (block: any) => {
 };
 
 export const checklistRenderer = (block: any) => {
-    const {items} = block.data;
+    const { items } = block.data;
     const listItems = items.map((item: any) => {
         const checked = item.checked ? 'checked' : '';
         return `<li><input type="checkbox" ${checked} disabled> ${item.text}</li>`;
@@ -28,7 +28,7 @@ export const checklistRenderer = (block: any) => {
 };
 
 export const listRenderer = (block: any) => {
-    const {style, items} = block.data;
+    const { style, items } = block.data;
     const listTag = style === 'ordered' ? 'ol' : 'ul';
     const listItems = items.map((item: any) => `<li>${item}</li>`).join('');
     return `<${listTag}>${listItems}</${listTag}>`;
@@ -36,8 +36,34 @@ export const listRenderer = (block: any) => {
 
 // export this class raw-html to render raw html from global.css file
 export const rawHtmlRenderer = (block: any) => {
-    return `<pre class="raw-html">${block.data.html}</pre>`;
+    console.log(block.data.html);
+
+    return `
+  <pre class="raw-html">
+            ${block.data.html}
+            <button onclick="copyToClipboard(this)" class="copy-button">
+                📋
+            </button>
+        </pre>
+    `
 };
+
+// Define the copyToClipboard function in the global scope
+function copyToClipboard(button: HTMLButtonElement) {
+    const pre = button.parentElement as HTMLElement;
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+    alert('Copied to clipboard');
+}
+
+// Attach the function to the window object
+(window as any).copyToClipboard = copyToClipboard;
+
 
 
 const customParsers = {

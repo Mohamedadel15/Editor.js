@@ -6,12 +6,12 @@ import CheckList from "@editorjs/checklist";
 import Code from "@editorjs/code";
 import Delimiter from "@editorjs/delimiter";
 import Embed from "@editorjs/embed";
-import Image from "@editorjs/image";
+// import Image from "@editorjs/image";
 import InlineCode from "@editorjs/inline-code";
 import List from "@editorjs/list";
 import Quote from "@editorjs/quote";
 import Table from "@editorjs/table";
-import SimpleImage from "@editorjs/simple-image";
+// import SimpleImage from "@editorjs/simple-image";
 import Paragraph from "@editorjs/paragraph";
 import Header from "@editorjs/header";
 import Raw from "@editorjs/raw";
@@ -41,16 +41,16 @@ const EDITOR_TOOLS = {
     delimiter: Delimiter,
     raw: Raw,
     embed: Embed,
-    image: {
-        class: Image,
-        config: {
-            endpoints: {
-                byFile: "/api/uploadImage", // Your backend file uploader endpoint
-                byUrl: "/api/uploadImage", // Your endpoint that provides uploading by Url
-            },
-        },
-    },
-    simpleImage: SimpleImage,
+    // image: {
+    //     class: Image,
+    //     config: {
+    //         endpoints: {
+    //             byFile: "/api/uploadImage", // Your backend file uploader endpoint
+    //             byUrl: "/api/uploadImage", // Your endpoint that provides uploading by Url
+    //         },
+    //     },
+    // },
+    // simpleImage: SimpleImage,
 
 };
 

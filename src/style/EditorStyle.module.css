@@ -41,3 +41,8 @@
 .editorjs-content li {
     margin-bottom: 10px;
 }
+
+.editorjs-content a{
+    border-bottom: 1px solid #007bff;
+    color: blue;
+}
