@@ -6,15 +6,15 @@ import CheckList from "@editorjs/checklist";
 import Code from "@editorjs/code";
 import Delimiter from "@editorjs/delimiter";
 import Embed from "@editorjs/embed";
-// import Image from "@editorjs/image";
 import InlineCode from "@editorjs/inline-code";
 import List from "@editorjs/list";
 import Quote from "@editorjs/quote";
 import Table from "@editorjs/table";
-// import SimpleImage from "@editorjs/simple-image";
 import Paragraph from "@editorjs/paragraph";
 import Header from "@editorjs/header";
 import Raw from "@editorjs/raw";
+// import TextAlign from "@canburaks/text-align-editorjs"
+import TextAlignTool from "@/utils/TextAlignTool";
 
 const EDITOR_TOOLS = {
     code: Code,
@@ -24,8 +24,8 @@ const EDITOR_TOOLS = {
         inlineToolbar: true,
         config: {
             placeholder: "Enter a Header",
-            levels: [2, 3, 4],
-            defaultLevel: 2,
+            levels: [1,2, 3, 4,5,6],
+            defaultLevel: 1,
         },
     },
     paragraph: {
@@ -39,19 +39,15 @@ const EDITOR_TOOLS = {
     list: List,
     quote: Quote,
     delimiter: Delimiter,
-    raw: Raw,
+    raw: {
+        class: Raw,
+        inlineToolbar: true,
+    },
     embed: Embed,
-    // image: {
-    //     class: Image,
-    //     config: {
-    //         endpoints: {
-    //             byFile: "/api/uploadImage", // Your backend file uploader endpoint
-    //             byUrl: "/api/uploadImage", // Your endpoint that provides uploading by Url
-    //         },
-    //     },
-    // },
-    // simpleImage: SimpleImage,
-
+    textAlign: {
+        class: TextAlignTool,
+        inlineToolbar: true,
+    },
 };
 
 function Editor({data, onChange, holder}: {
@@ -73,8 +69,18 @@ function Editor({data, onChange, holder}: {
                 async onChange(api, event) {
                     const content = await api.saver.save();
                     onChange(content);
+                    editor.save().then((outputData) => {
+                        console.log(outputData)
+                        outputData.blocks.forEach(block => {
+                            if (block.type === 'paragraph') {
+                                block.data.alignment = block.data.alignment || 'left'; // Add default alignment if missing
+                            }
+                        });
+                    });
+
                 },
             });
+
             ref.current = editor;
         }
 
@@ -85,6 +91,7 @@ function Editor({data, onChange, holder}: {
             }
         };
     }, []);
+
     return (
         <>
             <div
