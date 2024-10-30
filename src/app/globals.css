@@ -24,3 +24,12 @@
     font-size: 16px;
 }
 
+
+.richtext-outline-1{
+    outline-width: 0px !important;
+}
+
+.richtext-outline {
+    outline-style: none !important;
+}
+
